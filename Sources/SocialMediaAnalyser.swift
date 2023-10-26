@@ -1,36 +1,38 @@
+import Foundation
+
 class SocialMediaAnalyser {
     var records: Records
 
     init(filename: String) {
-        // Init
+        UI.heading(title: "Program Initialisation")
+        let projectRootURL = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent()
         self.records = Records()
-        self.records.loadPosts(filename: filename)
+        do {
+            print("Reading \(filename) file ...")
+            try self.records.loadPosts(path: projectRootURL.appendingPathComponent(filename))
+        } catch {
+            print("File is not found!")
+        }
     }
 
     func run() {
-
-        // Display menu
-        let title = "Select from main menu:"
-        let options: [(Int, String)] = [
-            (1, "Add a social media post"),
-            (2, "Delete an exisiting social media post"),
-            (3, "Retrieve a social meida post"),
-            (4, "Retrieve the top N posts with most likes"),
-            (5, "Retrieve the top N posts with most shares"),
-            (6, "Exit")
-        ]
-
         var selectedOption: Int
-
         repeat {
             // print menu
-            print(title)
-            for (key, value) in options {
-                print("\(key)) \(value)")
-            }
+            UI.heading(title: "Select from main menu")
+            UI.menu(options: [
+                (1, "Add a social media post"),
+                (2, "Delete an exisiting social media post"),
+                (3, "Retrieve a social meida post"),
+                (4, "Retrieve the top N posts with most likes"),
+                (5, "Retrieve the top N posts with most shares"),
+                (6, "Exit")
+            ], prompt: "Please select: ")
 
-            // TODO: get user's input
-            selectedOption = Int(readLine()!)!
+            // get user's input
+            do {
+                selectedOption = try Parser.parseInt(str: readLine(), min: 0)
+            } catch { selectedOption = -1 }
 
             // run funciton handler
             switch selectedOption {
@@ -54,24 +56,34 @@ class SocialMediaAnalyser {
 
     func addPost() {
         // take user input
-        let id = Int(readLine()!)!
-        let author = readLine()!
-        let likes = Int(readLine()!)!
-        let shares = Int(readLine()!)!
-        let content = readLine()!
-        let dateTime = readLine()!
+        do {
+            print("ID: ", terminator: "")
+            let id = try Parser.parseInt(str: readLine(), min: 0)
+            print("Content: ", terminator: "")
+            let content = try Parser.parseStr(str: readLine())
+            print("Author: ", terminator: "")
+            let author = try Parser.parseStr(str: readLine())
+            print("Likes: ", terminator: "")
+            let likes = try Parser.parseInt(str: readLine(), min: 0)
+            print("Shares: ", terminator: "")
+            let shares = try Parser.parseInt(str: readLine(), min: 0)
+            print("Date/Time: ", terminator: "")
+            let dateTime = try Parser.parseDateTime(str: readLine(), format: "dd/MM/yyyy HH:mm")
+            // create Post object
+            let post = Post(id: id, author: author, likes: likes, shares: shares, dateTime: dateTime, content: content)
 
-        // create Post object
-        let post = Post(id, author, likes, shares, dateTime, content)
-
-        // add Post obj to records
-        records.addPost(post: post);
+            // add Post obj to records
+            records.addPost(post: post)
+        } catch ParseValueError.withMessage(let message) {
+            print(message)
+        } catch {
+            print("Something wrong happend")
+        }
     }
 
     func deletePost() {
         let id = Int(readLine()!)!
         records.deletePostById(id: id)
-        print("Done")
     }
 
     func retrievePost() {
