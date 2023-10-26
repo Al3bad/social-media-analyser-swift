@@ -6,7 +6,7 @@ struct Post:CustomStringConvertible {
     var dateTime: String
     var content: String
 
-    init(_ id: Int, _ author: String,  _ likes: Int, _ shares: Int, _ dateTime: String, _ content: String) {
+    init(id: Int, author: String, likes: Int, shares: Int, dateTime: String, content: String) {
         self.id = id
         self.author = author
         self.likes = likes
