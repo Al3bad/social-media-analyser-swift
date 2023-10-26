@@ -1,3 +1,5 @@
+import Foundation
+
 class Records {
     var posts: [Post];
 
@@ -5,8 +7,27 @@ class Records {
         self.posts = []
     }
 
-    func loadPosts(filename: String) {
-        print("TODO: load posts ..")
+    func loadPosts(path: URL) throws {
+        var validPostsCount = 0
+        var invalidPostsCount = 0
+        let content = try String(contentsOf: path, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
+        for line in content.components(separatedBy: "\n") {
+            do {
+                let fields = try Parser.parseCSV(str: line, expectedFields: 6)
+                let id = try Parser.parseInt(str: fields[0], min: 0)
+                let content = try Parser.parseStr(str: fields[1])
+                let author = try Parser.parseStr(str: fields[2])
+                let likes = try Parser.parseInt(str: fields[3], min: 0)
+                let shares = try Parser.parseInt(str: fields[4], min: 0)
+                let dateTime = try Parser.parseDateTime(str: fields[5], format: "dd/MM/yyyy HH:mm")
+                posts.append(Post(id: id, author: author, likes: likes, shares: shares, dateTime: dateTime, content: content))
+                validPostsCount += 1
+            } catch ParseValueError.withMessage {
+                invalidPostsCount += 1
+            }
+        }
+        print("\(validPostsCount) valid posts has been loaded")
+        print("\(invalidPostsCount) invalid posts has been ignored")
     }
 
     func addPost(post: Post) -> Post? {
