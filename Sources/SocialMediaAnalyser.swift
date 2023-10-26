@@ -11,13 +11,13 @@ class SocialMediaAnalyser {
 
         // Display menu
         let title = "Select from main menu:"
-        let options: [Int: String] = [
-            1: "Add a social media post",
-            2: "Delete an exisiting social media post",
-            3: "Retrieve a social meida post",
-            4: "Retrieve the top N posts with most likes",
-            5: "Retrieve the top N posts with most shares",
-            6: "Exit"
+        let options: [(Int, String)] = [
+            (1, "Add a social media post"),
+            (2, "Delete an exisiting social media post"),
+            (3, "Retrieve a social meida post"),
+            (4, "Retrieve the top N posts with most likes"),
+            (5, "Retrieve the top N posts with most shares"),
+            (6, "Exit")
         ]
 
         var selectedOption: Int
