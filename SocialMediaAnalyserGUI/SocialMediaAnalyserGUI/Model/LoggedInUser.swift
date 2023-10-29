@@ -13,12 +13,14 @@ class LoggedInUser {
     @Attribute(.unique) var username: String
     var firstName: String
     var lastName: String
-    var password: String
+    var isVIP: Bool
+    var isAdmin: Bool
     
-    init(username: String, firstName: String, lastName: String, password: String) {
+    init(username: String, firstName: String, lastName: String, isVIP: Bool, isAdmin: Bool) {
         self.username = username
         self.firstName = firstName
         self.lastName = lastName
-        self.password = password
+        self.isVIP = isVIP
+        self.isAdmin = isAdmin
     }
 }

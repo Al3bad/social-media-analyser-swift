@@ -14,6 +14,8 @@ class User {
     var firstName: String
     var lastName: String
     var password: String
+    var isVIP: Bool = false
+    var isAdmin: Bool = false
     
     init(username: String, firstName: String, lastName: String, password: String) {
         self.username = username
