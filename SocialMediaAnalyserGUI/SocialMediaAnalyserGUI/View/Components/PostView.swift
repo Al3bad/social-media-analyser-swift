@@ -8,26 +8,44 @@
 import SwiftUI
 
 struct PostView: View {
+    private let spacing = 4.0
+    private let opacity = 0.5
     var post: Post
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
             HStack {
-                Label(post.author, systemImage: "person.fill")
+                HStack (spacing: spacing) {
+                    Image(systemName: "person.fill")
+                    Text("\(post.author)")
+                }.opacity(opacity)
                 Spacer()
-                Label(String(post.id), systemImage: "number.circle.fill")
             }
-            Text(post.content)
-            HStack {
-                Label(String(post.likes), systemImage: "heart.fill")
-                Label(String(post.shares), systemImage: "arrowshape.turn.up.right.circle.fill")
+            Text(post.content).opacity(0.8)
+            HStack (spacing: 16) {
+                HStack (spacing: spacing) {
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.red)
+                        .shadow(color: .red, radius: 6.0)
+                    Text("\(post.likes)")
+                }.opacity(opacity)
+                HStack (spacing: spacing) {
+                    Image(systemName: "arrowshape.turn.up.right.circle.fill")
+                        .foregroundColor(.cyan)
+                        .shadow(color: .cyan, radius: 6.0)
+                    Text("\(post.shares)")
+                }.opacity(opacity)
                 Spacer()
-                Label(post.dateTime, systemImage: "calendar")
+                HStack (spacing: spacing) {
+                    Image(systemName: "calendar")
+                    Text(post.dateTime)
+                }.opacity(opacity)
             }
         }
+        .font(.system(size: 12))
     }
 }
 
 #Preview {
-    PostView(post: Post(id: 10, author: "xv", likes: 10, shares: 42, dateTime: "10/10/2012", content: "Hello World!"))
+    PostView(post: Post(author: "xv", likes: 10, shares: 42, dateTime: "10/10/2012", content: "Hello World!"))
 }

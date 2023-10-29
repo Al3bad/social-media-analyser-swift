@@ -6,16 +6,25 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Post:CustomStringConvertible, Identifiable {
-    var id: Int
+@Model
+class Post: CustomStringConvertible {
     var author: String
     var likes: Int
     var shares: Int
     var dateTime: String
     var content: String
+    
+    init(author: String, likes: Int, shares: Int, dateTime: String, content: String) {
+        self.author = author
+        self.likes = likes
+        self.shares = shares
+        self.dateTime = dateTime
+        self.content = content
+    }
 
     var description: String {
-        return "\(id),\(author),\(likes),\(shares),\(dateTime),\(content)"
+        return "\(UInt(self.hashValue) as UInt),\(author),\(likes),\(shares),\(dateTime),\(content)"
     }
 }
