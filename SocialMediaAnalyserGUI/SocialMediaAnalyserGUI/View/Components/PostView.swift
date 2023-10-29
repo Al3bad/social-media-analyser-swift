@@ -17,7 +17,7 @@ struct PostView: View {
             HStack {
                 HStack (spacing: spacing) {
                     Image(systemName: "person.fill")
-                    Text("\(post.author)")
+                    Text("@\(post.author)")
                 }.opacity(opacity)
                 Spacer()
             }

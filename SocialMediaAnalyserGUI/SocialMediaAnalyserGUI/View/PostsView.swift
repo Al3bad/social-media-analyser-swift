@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct PostsView: View {
-    @State private var isShowingEditProfileSheet = false
+    @State private var isShowingPostEditorSheet = false
     @State private var postToEdit: Post?
     
     @Query var posts: [Post]
@@ -28,12 +28,12 @@ struct PostsView: View {
             .toolbar {
                 ToolbarItemGroup {
                     Button("Add", systemImage: "plus") {
-                        isShowingEditProfileSheet = true
+                        isShowingPostEditorSheet = true
                     }
                 }
             }
         }
-        .sheet(isPresented: $isShowingEditProfileSheet) {
+        .sheet(isPresented: $isShowingPostEditorSheet) {
             PostEditorSheet(post: nil)
         }
         .sheet(item: $postToEdit) { post in
