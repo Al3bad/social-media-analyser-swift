@@ -10,11 +10,13 @@ import SwiftData
 
 @Model
 class Post: CustomStringConvertible {
-    var author: String
-    var likes: Int
-    var shares: Int
-    var dateTime: String
-    var content: String
+    var author: String?
+    var likes: Int?
+    var shares: Int?
+    var dateTime: String?
+    var content: String?
+    
+    init() {}
     
     init(author: String, likes: Int, shares: Int, dateTime: String, content: String) {
         self.author = author
@@ -25,6 +27,6 @@ class Post: CustomStringConvertible {
     }
 
     var description: String {
-        return "\(UInt(self.hashValue) as UInt),\(author),\(likes),\(shares),\(dateTime),\(content)"
+        return "\(UInt(self.hashValue) as UInt),\(author!),\(likes!),\(shares!),\(dateTime!),\(content!)"
     }
 }

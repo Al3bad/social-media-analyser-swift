@@ -20,6 +20,10 @@
 		31E0F1A62AECF79D00029177 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E0F1A52AECF79D00029177 /* LoginView.swift */; };
 		31F0BB6E2AECED4500158E34 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F0BB6D2AECED4500158E34 /* DashboardView.swift */; };
 		31F0BB712AECED8800158E34 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F0BB702AECED8800158E34 /* UserDetailsView.swift */; };
+		31F700F52AF1081300E2E717 /* PostEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F700F42AF1081300E2E717 /* PostEditorSheet.swift */; };
+		31F700F82AF113FD00E2E717 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F700F72AF113FD00E2E717 /* Parser.swift */; };
+		31F700FB2AF118C400E2E717 /* ParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F700FA2AF118C400E2E717 /* ParseError.swift */; };
+		31F701002AF11A9300E2E717 /* PostEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F700FF2AF11A9300E2E717 /* PostEditorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		31E0F1A52AECF79D00029177 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		31F0BB6D2AECED4500158E34 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		31F0BB702AECED8800158E34 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		31F700F42AF1081300E2E717 /* PostEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorSheet.swift; sourceTree = "<group>"; };
+		31F700F72AF113FD00E2E717 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		31F700FA2AF118C400E2E717 /* ParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
+		31F700FF2AF11A9300E2E717 /* PostEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,8 @@
 		31751DD72AEBA85A000AC283 /* SocialMediaAnalyserGUI */ = {
 			isa = PBXGroup;
 			children = (
+				31F700F92AF118B400E2E717 /* Errors */,
+				31F700F62AF113ED00E2E717 /* Utils */,
 				31F0BB6F2AECED5200158E34 /* View */,
 				31D927732AEBB1230031AA3A /* Model */,
 				31751DD82AEBA85A000AC283 /* SocialMediaAnalyserGUIApp.swift */,
@@ -93,6 +103,7 @@
 				31D927742AEBB1360031AA3A /* Post.swift */,
 				3192B86F2AED47F300B5C83B /* User.swift */,
 				3192B8712AED6A6800B5C83B /* LoggedInUser.swift */,
+				31F700FF2AF11A9300E2E717 /* PostEditorViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -114,8 +125,25 @@
 				31F0BB6D2AECED4500158E34 /* DashboardView.swift */,
 				31E0F1A22AECF0F000029177 /* ProfileView.swift */,
 				313F03F82AEDFF160059C72A /* PostsView.swift */,
+				31F700F42AF1081300E2E717 /* PostEditorSheet.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		31F700F62AF113ED00E2E717 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				31F700F72AF113FD00E2E717 /* Parser.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		31F700F92AF118B400E2E717 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				31F700FA2AF118C400E2E717 /* ParseError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,8 +218,12 @@
 			files = (
 				313F03F92AEDFF160059C72A /* PostsView.swift in Sources */,
 				31751DDB2AEBA85A000AC283 /* ContentView.swift in Sources */,
+				31F701002AF11A9300E2E717 /* PostEditorViewModel.swift in Sources */,
 				31E0F1A32AECF0F000029177 /* ProfileView.swift in Sources */,
 				31D927722AEBAF970031AA3A /* PostView.swift in Sources */,
+				31F700F82AF113FD00E2E717 /* Parser.swift in Sources */,
+				31F700F52AF1081300E2E717 /* PostEditorSheet.swift in Sources */,
+				31F700FB2AF118C400E2E717 /* ParseError.swift in Sources */,
 				31751DD92AEBA85A000AC283 /* SocialMediaAnalyserGUIApp.swift in Sources */,
 				31F0BB6E2AECED4500158E34 /* DashboardView.swift in Sources */,
 				31F0BB712AECED8800158E34 /* UserDetailsView.swift in Sources */,
@@ -335,6 +367,7 @@
 				DEVELOPMENT_TEAM = 64JFAVR2B4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Social Media Analyser";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.alabbad.SocialMediaAnalyserGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -364,6 +397,7 @@
 				DEVELOPMENT_TEAM = 64JFAVR2B4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Social Media Analyser";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -373,7 +407,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.alabbad.SocialMediaAnalyserGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
