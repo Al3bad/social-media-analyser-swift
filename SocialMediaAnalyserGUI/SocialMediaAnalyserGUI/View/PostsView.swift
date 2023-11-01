@@ -14,6 +14,8 @@ enum SortOption: String, CaseIterable {
 }
 
 struct PostsView: View {
+    @Environment(\.modelContext) var ctx
+    
     @State private var isShowingPostEditorSheet = false
     @State private var sortedByLikes = true
     @State private var postToEdit: Post?
@@ -40,6 +42,11 @@ struct PostsView: View {
                     PostView(post: post)
                         .onTapGesture {
                             postToEdit = post
+                        }
+                        .swipeActions {
+                            Button("Delete", systemImage: "trash", role: .destructive) {
+                                ctx.delete(post)
+                            }
                         }
                 }
             }
@@ -71,7 +78,6 @@ struct PostsView: View {
         .sheet(item: $postToEdit) { post in
             PostEditorSheet(post: post)
         }
-        
     }
 }
 
