@@ -24,6 +24,12 @@ struct ContentView: View {
                         .tabItem {
                             Label("Posts", systemImage: "doc.fill")
                         }
+                    if user[0].isAdmin {
+                        UsersView()
+                        .tabItem {
+                            Label("Users", systemImage: "person.2.fill")
+                        }
+                    }
                     ProfileView(loggedInUser: user[0])
                         .tabItem {
                             Label("Profile", systemImage: "person")
