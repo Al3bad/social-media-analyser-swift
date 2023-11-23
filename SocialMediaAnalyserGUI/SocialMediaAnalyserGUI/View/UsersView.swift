@@ -18,20 +18,26 @@ struct UsersView: View {
     var body: some View {
         NavigationStack {
             List(users) { user in
-                Text("\(user.firstName) \(user.lastName) (\(user.username))")
-                    .foregroundStyle(.red)
-                    .swipeActions {
-                        Button("Delete", systemImage: "trash", role: .destructive) {
-                            if user.isAdmin {
-                                showingAlert = true
-                            } else {
-                                ctx.delete(user)
-                            }
+                Group {
+                    if user.isAdmin {
+                        Text("\(user.firstName) \(user.lastName) (\(user.username))")
+                            .foregroundStyle(.red)
+                    } else {
+                        Text("\(user.firstName) \(user.lastName) (\(user.username))")
+                    }
+                }
+                .swipeActions {
+                    Button("Delete", systemImage: "trash", role: .destructive) {
+                        if user.isAdmin {
+                            showingAlert = true
+                        } else {
+                            ctx.delete(user)
                         }
                     }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("Action Not Allowed"), message: Text("Admin user cannot be deleted!"), dismissButton: .default(Text("Ok")))
-                    }
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Action Not Allowed"), message: Text("Admin user cannot be deleted!"), dismissButton: .default(Text("Ok")))
+                }
             }
         }
     }

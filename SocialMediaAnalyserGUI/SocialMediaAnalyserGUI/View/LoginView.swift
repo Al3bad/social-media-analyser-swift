@@ -11,7 +11,7 @@ import SwiftData
 struct LoginView: View {
     @Environment(\.modelContext) var ctx
     private let width: CGFloat = 100
-    @State private var showingAlert = false
+    @State private var isShowingSignupSheet = false
     @State private var username: String = ""
     @State private var password: String = ""
     
@@ -60,15 +60,14 @@ struct LoginView: View {
                     // Signup button
                     Section {
                         Button ("Signup") {
-                            // TODO: ...
-                            showingAlert = true
-                        }
-                        .alert(isPresented: $showingAlert) {
-                            Alert(title: Text("TODO"), message: Text("Has not been implemented!"), dismissButton: .default(Text("Close")))
+                            isShowingSignupSheet = true
                         }
                     }
                 }
             }
+        }
+        .sheet(isPresented: $isShowingSignupSheet) {
+            SignupView()
         }
     }
 }
